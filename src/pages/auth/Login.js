@@ -11,7 +11,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [cookies, setCookies] = useCookies();
-  const history = useHistory();
 
   const login = (e) => {
     e.preventDefault();
@@ -23,7 +22,6 @@ const Login = () => {
           setMessage(response.data.message);
         } else {
           setCookies('bnmo_token', response.data.token, { path: '/' });
-          window.location.reload(true);
         }
     })
   }

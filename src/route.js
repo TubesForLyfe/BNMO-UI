@@ -7,6 +7,7 @@ import Register from "./pages/auth/Register";
 import CustomerHome from "./pages/customer/CustomerHome";
 
 import AdminHome from "./pages/admin/AdminHome";
+import VerifyAccount from "./pages/admin/VerifyAccount";
 
 const RouteManager = () => {
     const [cookies, setCookies] = useCookies();
@@ -15,16 +16,17 @@ const RouteManager = () => {
         <Router>
             <Switch>
                 {cookies.bnmo_token == "adminmahbebas" && <div>
-                    <Route path="/home" component={AdminHome} />
+                    <Route path="/" exact component={AdminHome} />
+                    <Route path="/verifikasi-akun-customer" component={VerifyAccount} />
                     <Route path="*">
-                        <Redirect to="/home" />
+                        <Redirect to="/" />
                     </Route>
                 </div>}
 
                 {cookies.bnmo_token != "adminmahbebas" && cookies.bnmo_token != null && <div>
-                    <Route path="/home" component={CustomerHome} />
+                    <Route path="/" exact component={CustomerHome} />
                     <Route path="*">
-                        <Redirect to="/home" />
+                        <Redirect to="/" />
                     </Route>
                 </div>}
 
