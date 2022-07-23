@@ -5,6 +5,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 
 import CustomerHome from "./pages/customer/CustomerHome";
+import SaldoRequest from "./pages/customer/SaldoRequest";
 
 import AdminHome from "./pages/admin/AdminHome";
 import VerifyAccount from "./pages/admin/VerifyAccount";
@@ -25,6 +26,7 @@ const RouteManager = () => {
 
                 {cookies.bnmo_token != "adminmahbebas" && cookies.bnmo_token != null && <div>
                     <Route path="/" exact component={CustomerHome} />
+                    <Route path="/request-saldo" component={SaldoRequest} />
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>
