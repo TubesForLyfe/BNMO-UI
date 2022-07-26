@@ -6,9 +6,14 @@ import Register from "./pages/auth/Register";
 
 import CustomerHome from "./pages/customer/CustomerHome";
 import SaldoRequest from "./pages/customer/SaldoRequest";
+import SaldoRequestHistory from "./pages/customer/SaldoRequestHistory";
+import SaldoTransfer from "./pages/customer/SaldoTransfer";
+import SaldoTransferHistory from "./pages/customer/SaldoTransferHistory";
 
 import AdminHome from "./pages/admin/AdminHome";
 import VerifyAccount from "./pages/admin/VerifyAccount";
+import VerifySaldoRequest from "./pages/admin/VerifySaldoRequest";
+import CustomerSearch from "./pages/admin/CustomerSearch";
 
 const RouteManager = () => {
     const [cookies, setCookies] = useCookies();
@@ -19,6 +24,8 @@ const RouteManager = () => {
                 {cookies.bnmo_token == "adminmahbebas" && <div>
                     <Route path="/" exact component={AdminHome} />
                     <Route path="/verifikasi-akun-customer" component={VerifyAccount} />
+                    <Route path="/verifikasi-request-saldo-customer" component={VerifySaldoRequest} />
+                    <Route path="/cari-customer" component={CustomerSearch} />
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>
@@ -27,6 +34,9 @@ const RouteManager = () => {
                 {cookies.bnmo_token != "adminmahbebas" && cookies.bnmo_token != null && <div>
                     <Route path="/" exact component={CustomerHome} />
                     <Route path="/request-saldo" component={SaldoRequest} />
+                    <Route path="/riwayat-request-saldo" component={SaldoRequestHistory} />
+                    <Route path="/transfer-saldo" component={SaldoTransfer} />
+                    <Route path="/riwayat-transfer-saldo" component={SaldoTransferHistory} />
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>

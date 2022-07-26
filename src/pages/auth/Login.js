@@ -35,11 +35,11 @@ const Login = () => {
             <hr></hr>
             <div className='form-group'>
                 <label for='username' className='left'>Username</label>
-                <input type='text' className='form-control' name='username' required onChange={e => setUsername(e.target.value)} />
+                <input type='text' className='form-control' name='username' onChange={e => setUsername(e.target.value)} />
             </div>
             <div className='form-group'>
                 <label for='password' className='left'>Password</label>
-                <input type='password' className='form-control' name='password' required onChange={e => setPassword(e.target.value)} />
+                <input type='password' className='form-control' name='password' onChange={e => setPassword(e.target.value)} />
             </div>
             <br></br>
             <p className='text-danger'>{message}</p>

@@ -19,7 +19,7 @@ const AdminHome = () => {
             <Link to='/verifikasi-akun-customer'><button className='btn btn-block btn-info'>Verifikasi Akun Customer</button></Link>
             <br></br>
             <br></br>
-            <Link to='/verifikasi-aktivitas-customer'><button className='btn btn-block btn-info'>Verifikasi Aktivitas Customer</button></Link>
+            <Link to='/verifikasi-request-saldo-customer'><button className='btn btn-block btn-info'>Verifikasi Request Saldo Customer</button></Link>
             <br></br>
             <br></br>
             <Link to='/cari-customer'><button className='btn btn-block btn-info'>Cari Customer</button></Link>

@@ -10,9 +10,17 @@
   float: right;
 }
 
+.txt-left {
+  text-align: left;
+}
+
 .img-10 {
   width: 10%;
   height: 10%;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .common-table, th, td {

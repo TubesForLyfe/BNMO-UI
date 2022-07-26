@@ -45,19 +45,19 @@ const Register = () => {
             <hr></hr>
             <div className='form-group'>
                 <label for='name' className='left'>Nama</label>
-                <input type='text' className='form-control' name='name' required onChange={e => setName(e.target.value)} />
+                <input type='text' className='form-control' name='name' onChange={e => setName(e.target.value)} />
             </div>
             <div className='form-group'>
                 <label for='username' className='left'>Username</label>
-                <input type='text' className='form-control' name='username' required onChange={e => setUsername(e.target.value)} />
+                <input type='text' className='form-control' name='username' onChange={e => setUsername(e.target.value)} />
             </div>
             <div className='form-group'>
                 <label for='password' className='left'>Password</label>
-                <input type='password' className='form-control' name='password' required onChange={e => setPassword(e.target.value)} />
+                <input type='password' className='form-control' name='password' onChange={e => setPassword(e.target.value)} />
             </div>
             <div className='form-group'>
                 <label for='foto-image' className='left'>Foto image</label>
-                <input type='file' accept='image/*' className='form-control' name='foto-image' required onChange={e => setImage(e.target.files[0])} />
+                <input type='file' accept='image/*' className='form-control' name='foto-image' onChange={e => setImage(e.target.files[0])} />
             </div>
             <br></br>
             <p className='text-danger'>{failMessage}</p>

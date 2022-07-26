@@ -31,13 +31,17 @@ const CustomerHome = () => {
             <Link to='/request-saldo'><button className='btn btn-block btn-info'>Request Saldo</button></Link>
             <br></br>
             <br></br>
+            <Link to='/riwayat-request-saldo'><button className='btn btn-block btn-info'>Riwayat Request Saldo</button></Link>
+            <br></br>
+            <br></br>
             <Link to='/transfer-saldo'><button className='btn btn-block btn-info'>Transfer Saldo</button></Link>
             <br></br>
             <br></br>
-            <Link to='/riwayat-transaksi'><button className='btn btn-block btn-info'>Riwayat Transaksi</button></Link>
+            <Link to='/riwayat-transfer-saldo'><button className='btn btn-block btn-info'>Riwayat Transfer Saldo</button></Link>
             <br></br>
             <br></br>
             <button className='btn btn-danger' onClick={logout}>Log Out</button>
+            <br></br>
             <br></br>
             <br></br>
             <br></br>

@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 import Back from '../../images/Back.png'
 
-const SaldoRequest = () => {
-  const [requestType, setRequestType] = useState('');
+const SaldoTransfer = () => {
+  const [username, setUsername] = useState('');
   const [amount, setAmount] = useState('');
   const [currency, setCurrency] = useState('');
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [failMessage, setFailMessage] = useState('');
 
   axios.defaults.withCredentials = true;
 
-  const requestTypeOptions = [
-    { value: 'tambah', label: 'Penambahan'},
-    { value: 'kurang', label: 'Pengurangan'}
-  ]
-
-  const requestSaldo = (e) => {
+  const transferSaldo = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-request`, {
-      type: requestType,
+    axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-transfer`, {
+      username: username,
       amount: parseFloat(amount),
       currency: currency
     }).then(response => {
-      setMessage(response.data.message);
+      if (response.data.message) {
+        setFailMessage(response.data.message);
+        setSuccessMessage('');
+      } else {
+        setSuccessMessage(response.data);
+        setFailMessage('');
+      }
     })
   }
 
@@ -61,15 +63,15 @@ const SaldoRequest = () => {
       <div className='row justify-content-center'>
         <div className='col-md-4 col-md-offset-4 border border-secondary mt-3 mb-3'>
             <br></br>
-            <h4>Request Saldo</h4>
+            <h4>Transfer Saldo</h4>
             <hr></hr>
             <Link to='/' className='left ms-2'><img src={Back} /></Link>
             <br></br>
             <br></br>
             <div className='form-group'>
-                <label for='request-type' className='left'>Jenis Request</label>
+                <label for='username' className='left'>Username Pemilik Rekening Tujuan</label>
                 <br></br>
-                <Select options={requestTypeOptions} name='money-type' className='txt-left' placeholder='' onChange={e => setRequestType(e.value)} />
+                <input type='text' className='form-control' name='username' onChange={e => setUsername(e.target.value)} />
             </div>
             <div className='form-group'>
                 <label for='amount' className='left'>Jumlah</label>
@@ -81,9 +83,10 @@ const SaldoRequest = () => {
                 <Select options={currencyOptions} name='money-type' className='txt-left' placeholder='' onChange={e => setCurrency(e.value)} />
             </div>
             <br></br>
-            <p className='text-success'>{message}</p>
+            <p className='text-danger'>{failMessage}</p>
+            <p className='text-success'>{successMessage}</p>
             <div className='form-group'>
-                <button className='btn btn-block btn-primary' onClick={requestSaldo}>Request</button>
+                <button className='btn btn-block btn-primary' onClick={transferSaldo}>Request</button>
             </div>
             <br></br>
         </div>
@@ -92,4 +95,4 @@ const SaldoRequest = () => {
   )
 }
 
-export default SaldoRequest
+export default SaldoTransfer
