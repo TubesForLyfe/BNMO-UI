@@ -86,7 +86,7 @@ const SaldoTransfer = () => {
             <p className='text-danger'>{failMessage}</p>
             <p className='text-success'>{successMessage}</p>
             <div className='form-group'>
-                <button className='btn btn-block btn-primary' onClick={transferSaldo}>Request</button>
+                <button className='btn btn-block btn-primary' onClick={transferSaldo}>Transfer</button>
             </div>
             <br></br>
         </div>
