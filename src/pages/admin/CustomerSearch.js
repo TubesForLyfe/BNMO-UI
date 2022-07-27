@@ -13,14 +13,18 @@ const CustomerSearch = () => {
 
   const searchCustomer = (e) => {
     e.preventDefault();
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/customer-search/${search}`).then(response => {
-        setCustomer(response.data);
-        if (response.data.length == 0) {
-            setMessage('Customer tidak ditemukan.');
-        } else {
-            setMessage('');
-        }
-    })
+    if (search == '') {
+        setMessage('Terdapat kolom yang kosong.');
+    } else {
+        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/customer-search/${search}`).then(response => {
+            setCustomer(response.data);
+            if (response.data.length == 0) {
+                setMessage('Customer tidak ditemukan.');
+            } else {
+                setMessage('');
+            }
+        })
+    }
   }
 
   return (
