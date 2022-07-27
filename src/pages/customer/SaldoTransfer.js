@@ -17,19 +17,29 @@ const SaldoTransfer = () => {
 
   const transferSaldo = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-transfer`, {
-      username: username,
-      amount: parseFloat(amount),
-      currency: currency
-    }).then(response => {
-      if (response.data.message) {
-        setFailMessage(response.data.message);
+    if (username == '' || amount == '' || currency == '') {
+        setFailMessage('Terdapat kolom yang kosong.');
         setSuccessMessage('');
-      } else {
-        setSuccessMessage(response.data);
-        setFailMessage('');
-      }
-    })
+    } else {
+        if (!isNaN(+amount)) {
+            axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-transfer`, {
+                username: username,
+                amount: parseFloat(amount),
+                currency: currency
+            }).then(response => {
+                if (response.data.message) {
+                    setFailMessage(response.data.message);
+                    setSuccessMessage('');
+                } else {
+                    setSuccessMessage(response.data);
+                    setFailMessage('');
+                }
+            })
+        } else {
+            setFailMessage('Kolom jumlah harus berupa bilangan.');
+            setSuccessMessage('');
+        } 
+    }
   }
 
   useEffect(() => {

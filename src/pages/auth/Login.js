@@ -12,18 +12,24 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [cookies, setCookies] = useCookies();
 
+  axios.defaults.withCredentials = true;
+
   const login = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BNMO_API}/login`, {
-        username: username,
-        password: password
-    }).then(response => {
-        if (response.data.message) {
-          setMessage(response.data.message);
-        } else {
-          setCookies('bnmo_token', response.data.token, { path: '/' });
-        }
-    })
+    if (username == '' || password == '') {
+      setMessage('Terdapat kolom yang kosong.');
+    } else {
+      axios.post(`${process.env.REACT_APP_BNMO_API}/login`, {
+          username: username,
+          password: password
+      }).then(response => {
+          if (response.data.message) {
+            setMessage(response.data.message);
+          } else {
+            setCookies('bnmo_token', response.data.token, { path: '/' });
+          }
+      })
+    }
   }
 
   return (

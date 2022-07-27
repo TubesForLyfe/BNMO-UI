@@ -12,28 +12,35 @@ const Register = () => {
   const [failMessage, setFailMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  axios.defaults.withCredentials = true;
+
   const register = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BNMO_API}/register`, {
-      nama: nama,
-      username: username,
-      password: password
-    }).then(response => {
-      if (response.data.message) {
-        setFailMessage(response.data.message);
-        setSuccessMessage('');
-      } else {
-        const formData = new FormData();
-        formData.append('file', image);
-        fetch(`${process.env.REACT_APP_BNMO_API}/image/${username}/upload`, {
-          method: 'post',
-          body: formData
-        }).then(response => {
-          setSuccessMessage("Registrasi berhasil. Akun Anda akan segera diverifikasi.");
-          setFailMessage('');
-        })
-      }
-    })
+    if (nama == '' || username == '' || password == '' || image == '') {
+      setFailMessage('Terdapat kolom yang kosong.');
+      setSuccessMessage('');
+    } else {
+      axios.post(`${process.env.REACT_APP_BNMO_API}/register`, {
+        nama: nama,
+        username: username,
+        password: password
+      }).then(response => {
+        if (response.data.message) {
+          setFailMessage(response.data.message);
+          setSuccessMessage('');
+        } else {
+          const formData = new FormData();
+          formData.append('file', image);
+          fetch(`${process.env.REACT_APP_BNMO_API}/image/${username}/upload`, {
+            method: 'post',
+            body: formData
+          }).then(response => {
+            setSuccessMessage("Registrasi berhasil. Akun Anda akan segera diverifikasi.");
+            setFailMessage('');
+          })
+        }
+      })
+    }
   }
   
   return (
@@ -60,8 +67,8 @@ const Register = () => {
                 <input type='file' accept='image/*' className='form-control' name='foto-image' onChange={e => setImage(e.target.files[0])} />
             </div>
             <br></br>
-            <p className='text-danger'>{failMessage}</p>
-            <p className='text-success'>{successMessage}</p>
+            {failMessage != '' && <p className='text-danger'>{failMessage}</p>}
+            {successMessage != '' && <p className='text-success'>{successMessage}</p>}
             <div className='form-group'>
                 <button className='btn btn-block btn-primary' onClick={register}>Register</button>
             </div>

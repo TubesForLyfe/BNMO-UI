@@ -10,7 +10,8 @@ const SaldoRequest = () => {
   const [amount, setAmount] = useState('');
   const [currency, setCurrency] = useState('');
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [message, setMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [failMessage, setFailMessage] = useState('');
 
   axios.defaults.withCredentials = true;
 
@@ -21,13 +22,24 @@ const SaldoRequest = () => {
 
   const requestSaldo = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-request`, {
-      type: requestType,
-      amount: parseFloat(amount),
-      currency: currency
-    }).then(response => {
-      setMessage(response.data.message);
-    })
+    if (requestType == '' || amount == '' || currency == '') {
+      setFailMessage('Terdapat kolom yang kosong.');
+      setSuccessMessage('');
+    } else {
+      if (!isNaN(+amount)) {
+        axios.post(`${process.env.REACT_APP_BNMO_API}/customer/saldo-request`, {
+          type: requestType,
+          amount: parseFloat(amount),
+          currency: currency
+        }).then(response => {
+          setSuccessMessage(response.data.message);
+          setFailMessage('');
+        })
+      } else {
+        setFailMessage('Kolom jumlah harus berupa bilangan.');
+        setSuccessMessage('');
+      }
+    }
   }
 
   useEffect(() => {
@@ -81,7 +93,8 @@ const SaldoRequest = () => {
                 <Select options={currencyOptions} name='money-type' className='txt-left' placeholder='' onChange={e => setCurrency(e.value)} />
             </div>
             <br></br>
-            <p className='text-success'>{message}</p>
+            {successMessage != '' && <p className='text-success'>{successMessage}</p>}
+            {failMessage != '' && <p className='text-danger'>{failMessage}</p>}
             <div className='form-group'>
                 <button className='btn btn-block btn-primary' onClick={requestSaldo}>Request</button>
             </div>
