@@ -93,8 +93,8 @@ const SaldoTransfer = () => {
                 <Select options={currencyOptions} name='money-type' className='txt-left' placeholder='' onChange={e => setCurrency(e.value)} />
             </div>
             <br></br>
-            <p className='text-danger'>{failMessage}</p>
-            <p className='text-success'>{successMessage}</p>
+            {successMessage != '' && <p className='text-success'>{successMessage}</p>}
+            {failMessage != '' && <p className='text-danger'>{failMessage}</p>}
             <div className='form-group'>
                 <button className='btn btn-block btn-primary' onClick={transferSaldo}>Transfer</button>
             </div>
