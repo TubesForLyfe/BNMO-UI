@@ -7,7 +7,7 @@ function App() {
   document.title = "BNMO Application"
   return (
     <div className='App'>
-      <img className='img-10' alt="BNMO Image" src={BNMO} />
+      <img className='img-10' alt="BNMO" src={BNMO} />
       <RouteManager />
     </div>
   );

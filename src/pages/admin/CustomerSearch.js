@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -62,7 +62,7 @@ const CustomerSearch = () => {
                                 <tr>
                                     <td>{val.nama}</td>
                                     <td>{val.username}</td>
-                                    <td><img className='w-75 h-75' alt={`${val.username} Image`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
+                                    <td><img className='w-75 h-75' alt={`${val.username}`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
                                     <td>{val.saldo}</td>
                                 </tr>
                             </tbody>

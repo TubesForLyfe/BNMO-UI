@@ -51,7 +51,7 @@ const VerifyAccount = () => {
                                 <tr>
                                     <td>{val.nama}</td>
                                     <td>{val.username}</td>
-                                    <td><img className='w-75 h-75' alt={`${val.username} Image`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
+                                    <td><img className='w-75 h-75' alt={`${val.username}`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
                                     <td><button className='btn btn-primary' onClick={e => {
                                         e.preventDefault();
                                         verifyCustomer(val.username);

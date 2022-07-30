@@ -25,7 +25,7 @@ const CustomerHome = () => {
       <div className='row justify-content-center'>
         <div className='col-md-4 col-md-offset-4 border border-secondary mt-3 mb-3'>
             <br></br>
-            {profile.image && <img className='h-25 w-25 border border-info' alt={`${profile.nama} Image`} src={`${process.env.REACT_APP_BNMO_API}/image/${profile.image}`} />}
+            {profile.image && <img className='h-25 w-25 border border-info' alt={`${profile.nama}`} src={`${process.env.REACT_APP_BNMO_API}/image/${profile.image}`} />}
             <h5>{profile.nama}</h5>
             <h5>Rp {profile.saldo}</h5>
             <hr></hr>
