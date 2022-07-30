@@ -16,12 +16,12 @@ import VerifySaldoRequest from "./pages/admin/VerifySaldoRequest";
 import CustomerSearch from "./pages/admin/CustomerSearch";
 
 const RouteManager = () => {
-    const [cookies, setCookies] = useCookies();
+    const [cookies] = useCookies();
 
     return (
         <Router>
             <Switch>
-                {cookies.bnmo_token == "adminmahbebas" && <div>
+                {cookies.bnmo_token === "adminmahbebas" && <div>
                     <Route path="/" exact component={AdminHome} />
                     <Route path="/verifikasi-akun-customer" component={VerifyAccount} />
                     <Route path="/verifikasi-request-saldo-customer" component={VerifySaldoRequest} />
@@ -31,7 +31,7 @@ const RouteManager = () => {
                     </Route>
                 </div>}
 
-                {cookies.bnmo_token != "adminmahbebas" && cookies.bnmo_token != null && <div>
+                {cookies.bnmo_token !== "adminmahbebas" && cookies.bnmo_token != null && <div>
                     <Route path="/" exact component={CustomerHome} />
                     <Route path="/request-saldo" component={SaldoRequest} />
                     <Route path="/riwayat-request-saldo" component={SaldoRequestHistory} />

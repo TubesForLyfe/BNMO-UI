@@ -13,12 +13,12 @@ const CustomerSearch = () => {
 
   const searchCustomer = (e) => {
     e.preventDefault();
-    if (search == '') {
+    if (search === '') {
         setMessage('Terdapat kolom yang kosong.');
     } else {
         axios.get(`${process.env.REACT_APP_BNMO_API}/admin/customer-search/${search}`).then(response => {
             setCustomer(response.data);
-            if (response.data.length == 0) {
+            if (response.data.length === 0) {
                 setMessage('Customer tidak ditemukan.');
             } else {
                 setMessage('');
@@ -34,7 +34,7 @@ const CustomerSearch = () => {
             <br></br>
             <h4>Cari Customer</h4>
             <hr></hr>
-            <Link to='/' className='left ms-2'><img src={Back} /></Link>
+            <Link to='/' className='left ms-2'><img alt='Back' src={Back} /></Link>
             <br></br>
             <br></br>
             <div className='form-group mx-5'>
@@ -62,7 +62,7 @@ const CustomerSearch = () => {
                                 <tr>
                                     <td>{val.nama}</td>
                                     <td>{val.username}</td>
-                                    <td><img className='w-75 h-75' src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
+                                    <td><img className='w-75 h-75' alt={`${val.username} Image`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
                                     <td>{val.saldo}</td>
                                 </tr>
                             </tbody>

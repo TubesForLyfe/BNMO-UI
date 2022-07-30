@@ -17,7 +17,7 @@ const SaldoTransfer = () => {
 
   const transferSaldo = (e) => {
     e.preventDefault();
-    if (username == '' || amount == '' || currency == '') {
+    if (username === '' || amount === '' || currency === '') {
         setFailMessage('Terdapat kolom yang kosong.');
         setSuccessMessage('');
     } else {
@@ -75,7 +75,7 @@ const SaldoTransfer = () => {
             <br></br>
             <h4>Transfer Saldo</h4>
             <hr></hr>
-            <Link to='/' className='left ms-2'><img src={Back} /></Link>
+            <Link to='/' className='left ms-2'><img alt='Back' src={Back} /></Link>
             <br></br>
             <br></br>
             <div className='form-group'>
@@ -93,8 +93,8 @@ const SaldoTransfer = () => {
                 <Select options={currencyOptions} name='money-type' className='txt-left' placeholder='' onChange={e => setCurrency(e.value)} />
             </div>
             <br></br>
-            {successMessage != '' && <p className='text-success'>{successMessage}</p>}
-            {failMessage != '' && <p className='text-danger'>{failMessage}</p>}
+            {successMessage !== '' && <p className='text-success'>{successMessage}</p>}
+            {failMessage !== '' && <p className='text-danger'>{failMessage}</p>}
             <div className='form-group'>
                 <button className='btn btn-block btn-primary' onClick={transferSaldo}>Transfer</button>
             </div>

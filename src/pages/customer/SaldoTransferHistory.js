@@ -96,7 +96,7 @@ const SaldoTransferHistory = () => {
             <br></br>
             <h4>Riwayat Transfer Saldo</h4>
             <hr></hr>
-            <Link to='/' className='left ms-2'><img src={Back} /></Link>
+            <Link to='/' className='left ms-2'><img alt='Back' src={Back} /></Link>
             <br></br>
             <br></br>
             {saldoTransfer.length > 0 && <div className='mx-3'>
@@ -116,10 +116,10 @@ const SaldoTransferHistory = () => {
                         return (
                             <tbody>
                                 <tr>
-                                    {val.from_username == username && <td>{val.to_username}</td>}
-                                    {val.to_username == username && <td>{val.from_username}</td>}
-                                    {val.from_username == username && <td className='text-danger'>- {val.jumlah}</td>}
-                                    {val.to_username == username && <td className='text-success'>+ {val.jumlah}</td>}
+                                    {val.from_username === username && <td>{val.to_username}</td>}
+                                    {val.to_username === username && <td>{val.from_username}</td>}
+                                    {val.from_username === username && <td className='text-danger'>- {val.jumlah}</td>}
+                                    {val.to_username === username && <td className='text-success'>+ {val.jumlah}</td>}
                                     <td>{formatted_created_at}</td>
                                 </tr>
                             </tbody>
@@ -136,7 +136,7 @@ const SaldoTransferHistory = () => {
 
                     {page + 1 < lastPage && <p className='ms-3' onClick={nextClick}>{page + 1}</p>}
                     {page + 2 < lastPage && <p className='ms-3'>..</p>}
-                    {page != lastPage && <p className='ms-3' onClick={lastClick}>{lastPage}</p>}
+                    {page < lastPage && <p className='ms-3' onClick={lastClick}>{lastPage}</p>}
                     <p className='ms-3' onClick={nextClick}>{'>'}</p>
                 </div>
             </div>}

@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
-
-import BNMO from '../../images/BNMO.PNG'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +13,7 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    if (username == '' || password == '') {
+    if (username === '' || password === '') {
       setMessage('Terdapat kolom yang kosong.');
     } else {
       axios.post(`${process.env.REACT_APP_BNMO_API}/login`, {
@@ -26,7 +23,8 @@ const Login = () => {
           if (response.data.message) {
             setMessage(response.data.message);
           } else {
-            setCookies('bnmo_token', response.data.token, { path: '/' });
+            setCookies('bnmo_token', response.data.token, { path: '/' });   
+            console.log(cookies.bnmo_token);     
           }
       })
     }

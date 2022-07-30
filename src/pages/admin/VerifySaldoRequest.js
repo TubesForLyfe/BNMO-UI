@@ -42,7 +42,7 @@ const VerifySaldoRequest = () => {
             <br></br>
             <h4>Verifikasi Request Saldo Customer</h4>
             <hr></hr>
-            <Link to='/' className='left ms-2'><img src={Back} /></Link>
+            <Link to='/' className='left ms-2'><img alt='Back' src={Back} /></Link>
             <br></br>
             <br></br>
             {unverifiedSaldoRequest.length > 0 && <div className='mx-3'>
@@ -66,8 +66,8 @@ const VerifySaldoRequest = () => {
                             <tbody>
                                 <tr>
                                     <td>{val.username}</td>
-                                    {val.type == 'tambah' && <td>Penambahan</td>}
-                                    {val.type == 'kurang' && <td>Pengurangan</td>}
+                                    {val.type === 'tambah' && <td>Penambahan</td>}
+                                    {val.type === 'kurang' && <td>Pengurangan</td>}
                                     <td>{val.jumlah}</td>
                                     <td>{formatted_created_at}</td>
                                     <td><button className='btn btn-primary' onClick={e => {

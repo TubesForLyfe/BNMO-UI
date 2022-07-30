@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-import BNMO from '../../images/BNMO.PNG'
-
 const Register = () => {
   const [nama, setName] = useState('');
   const [username, setUsername] = useState('');
@@ -16,7 +14,7 @@ const Register = () => {
 
   const register = (e) => {
     e.preventDefault();
-    if (nama == '' || username == '' || password == '' || image == '') {
+    if (nama === '' || username === '' || password === '' || image === '') {
       setFailMessage('Terdapat kolom yang kosong.');
       setSuccessMessage('');
     } else {
@@ -67,8 +65,8 @@ const Register = () => {
                 <input type='file' accept='image/*' className='form-control' name='foto-image' onChange={e => setImage(e.target.files[0])} />
             </div>
             <br></br>
-            {failMessage != '' && <p className='text-danger'>{failMessage}</p>}
-            {successMessage != '' && <p className='text-success'>{successMessage}</p>}
+            {failMessage !== '' && <p className='text-danger'>{failMessage}</p>}
+            {successMessage !== '' && <p className='text-success'>{successMessage}</p>}
             <div className='form-group'>
                 <button className='btn btn-block btn-primary' onClick={register}>Register</button>
             </div>

@@ -92,7 +92,7 @@ const SaldoRequestHistory = () => {
             <br></br>
             <h4>Riwayat Request Saldo</h4>
             <hr></hr>
-            <Link to='/' className='left ms-2'><img src={Back} /></Link>
+            <Link to='/' className='left ms-2'><img alt='Back' src={Back} /></Link>
             <br></br>
             <br></br>
             {saldoRequest.length > 0 && <div className='mx-3'>
@@ -121,13 +121,13 @@ const SaldoRequestHistory = () => {
                         return (
                             <tbody>
                                 <tr>
-                                    {val.type == 'tambah' && <td>Penambahan</td>}
-                                    {val.type == 'kurang' && <td>Pengurangan</td>}
+                                    {val.type === 'tambah' && <td>Penambahan</td>}
+                                    {val.type === 'kurang' && <td>Pengurangan</td>}
                                     <td>{val.jumlah}</td>
                                     <td>{formatted_created_at}</td>
-                                    {val.status == '-' && <td className='bg-warning'></td>}
-                                    {val.status == 'accepted' && <td className='bg-success'></td>}
-                                    {val.status == 'rejected' && <td className='bg-danger'></td>}
+                                    {val.status === '-' && <td className='bg-warning'></td>}
+                                    {val.status === 'accepted' && <td className='bg-success'></td>}
+                                    {val.status === 'rejected' && <td className='bg-danger'></td>}
                                     <td>{formatted_verified_at}</td>
                                 </tr>
                             </tbody>
@@ -144,7 +144,7 @@ const SaldoRequestHistory = () => {
 
                     {page + 1 < lastPage && <p className='ms-3' onClick={nextClick}>{page + 1}</p>}
                     {page + 2 < lastPage && <p className='ms-3'>..</p>}
-                    {page != lastPage && <p className='ms-3' onClick={lastClick}>{lastPage}</p>}
+                    {page < lastPage && <p className='ms-3' onClick={lastClick}>{lastPage}</p>}
                     <p className='ms-3' onClick={nextClick}>{'>'}</p>
                 </div>
             </div>}
