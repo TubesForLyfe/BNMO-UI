@@ -14,6 +14,7 @@ const AdminHome = () => {
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-md-4 col-md-offset-4 border border-secondary mt-3 mb-3'>
+            {cookies.bnmo_token}
             <br></br>
             <h4>Admin Menu</h4>
             <hr></hr>
