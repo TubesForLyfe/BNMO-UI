@@ -23,7 +23,7 @@ const Login = () => {
           if (response.data.message) {
             setMessage(response.data.message);
           } else {
-            setCookies('bnmo_token', response.data.token, { domain: 'herokuapp.com'});   
+            setCookies('bnmo_token', response.data.token);   
             console.log(cookies.bnmo_token);     
           }
       })
