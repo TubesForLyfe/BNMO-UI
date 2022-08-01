@@ -37,5 +37,5 @@ Tech Stack yang digunakan adalah <strong>React.js</strong> dengan versi node 16.
 ## Fitur Tambahan
 
 - Customer
-<br>
+
 Melihat riwayat request penambahan/pengurangan saldo beserta status dan waktu verifikasi dari request tersebut
