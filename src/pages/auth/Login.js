@@ -28,7 +28,7 @@ const Login = () => {
             if (domain.length === 1) {
               setCookies('bnmo_token', response.data.token);
             } else {
-              const domainPart = '.' + domain[domain.length - 2] + '.' + domain[domain.length - 1];
+              const domainPart = domain[domain.length - 2] + '.' + domain[domain.length - 1];
               console.log(domainPart);
               setCookies('bnmo_token', response.data.token, {domain: domainPart});
             }
