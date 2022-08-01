@@ -23,7 +23,15 @@ const Login = () => {
           if (response.data.message) {
             setMessage(response.data.message);
           } else {
-            setCookies('bnmo_token', response.data.token);   
+            console.log(window.location.host)
+            const domain =  window.location.host.split('.');
+            if (domain.length === 1) {
+              setCookies('bnmo_token', response.data.token);
+            } else {
+              const domainPart = '.' + domain[domain.length - 2] + '.' + domain[domain.length - 1];
+              console.log(domainPart);
+              setCookies('bnmo_token', response.data.token);
+            }
             console.log(cookies.bnmo_token);     
           }
       })
