@@ -1,4 +1,4 @@
-# BNMO-API
+# BNMO-UI
 
 ## Cara Menjalankan
 
