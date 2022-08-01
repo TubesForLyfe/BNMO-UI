@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import Back from '../../images/Back.png'
 
@@ -10,6 +11,7 @@ const SaldoTransferHistory = () => {
   const [lastPage, setLastPage] = useState('');
   const [saldoTransfer, setSaldoTransfer] = useState([]);
   const [saldoTransferList, setSaldoTransferList] = useState([]);
+  const [cookies] = useCookies();
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   axios.defaults.withCredentials = true;
@@ -75,10 +77,14 @@ const SaldoTransferHistory = () => {
   }
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/profile`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/profile`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setUsername(response.data.username);
     })
-    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/saldo-transfer-history`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/saldo-transfer-history`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setSaldoTransferList(response.data);
         setLastPage(parseInt((response.data.length - 1) / 10) + 1);
         let saldoHistory = [];
@@ -87,6 +93,7 @@ const SaldoTransferHistory = () => {
         }
         setSaldoTransfer(saldoHistory);
     })
+    // eslint-disable-next-line
   }, [])
 
   return (

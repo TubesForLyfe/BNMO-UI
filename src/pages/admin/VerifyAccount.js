@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 import Back from '../../images/Back.png'
 
 const VerifyAccount = () => {
   const [unverifiedCustomer, setUnverifiedCustomer] = useState([]);
   const [message, setMessage] = useState('');
+  const [cookies] = useCookies();
 
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-customer`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-customer`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setUnverifiedCustomer(response.data);
     })
+    // eslint-disable-next-line
   }, [])
 
   const verifyCustomer = (username) => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/verify-customer/${username}`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/verify-customer/${username}`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setMessage(response.data.message);
-        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-customer`).then(response => {
+        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-customer`, {
+            headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+        }).then(response => {
             setUnverifiedCustomer(response.data);
         })
     })
@@ -51,7 +60,7 @@ const VerifyAccount = () => {
                                 <tr>
                                     <td>{val.nama}</td>
                                     <td>{val.username}</td>
-                                    <td><img className='w-75 h-75' alt={`${val.username}`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}`} /></td>
+                                    <td><img className='w-75 h-75' alt={`${val.username}`} src={`${process.env.REACT_APP_BNMO_API}/image/${val.image}/${cookies.bnmo_token}`} /></td>
                                     <td><button className='btn btn-primary' onClick={e => {
                                         e.preventDefault();
                                         verifyCustomer(val.username);

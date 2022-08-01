@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import Back from '../../images/Back.png'
 
@@ -9,6 +10,7 @@ const SaldoRequestHistory = () => {
   const [lastPage, setLastPage] = useState('');
   const [saldoRequest, setSaldoRequest] = useState([]);
   const [saldoRequestList, setSaldoRequestList] = useState([]);
+  const [cookies] = useCookies();
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   axios.defaults.withCredentials = true;
@@ -74,7 +76,9 @@ const SaldoRequestHistory = () => {
   }
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/saldo-request-history`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/saldo-request-history`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setSaldoRequestList(response.data);
         setLastPage(parseInt((response.data.length - 1) / 10) + 1);
         let saldoHistory = [];
@@ -83,6 +87,7 @@ const SaldoRequestHistory = () => {
         }
         setSaldoRequest(saldoHistory);
     })
+    // eslint-disable-next-line
   }, [])
 
   return (

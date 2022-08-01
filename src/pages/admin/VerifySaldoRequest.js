@@ -1,35 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 import Back from '../../images/Back.png'
 
 const VerifySaldoRequest = () => {
   const [unverifiedSaldoRequest, setUnverifiedSaldoRequest] = useState([]);
   const [message, setMessage] = useState('');
+  const [cookies] = useCookies();
   const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setUnverifiedSaldoRequest(response.data);
     })
+    // eslint-disable-next-line
   }, [])
 
   const acceptSaldoRequest = (username, created_at) => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/accept-saldo-request/${username}/${created_at}`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/accept-saldo-request/${username}/${created_at}`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setMessage(response.data.message);
-        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`).then(response => {
+        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`, {
+            headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+        }).then(response => {
             setUnverifiedSaldoRequest(response.data);
         })
     })
   }
 
   const rejectSaldoRequest = (username, created_at) => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/reject-saldo-request/${username}/${created_at}`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/admin/reject-saldo-request/${username}/${created_at}`, {
+        headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
         setMessage(response.data.message);
-        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`).then(response => {
+        axios.get(`${process.env.REACT_APP_BNMO_API}/admin/unverified-saldo-request`, {
+            headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+        }).then(response => {
             setUnverifiedSaldoRequest(response.data);
         })
     })

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import { useCookies } from 'react-cookie';
 
 import Back from '../../images/Back.png'
 
@@ -12,6 +13,7 @@ const SaldoRequest = () => {
   const [currencyOptions, setCurrencyOptions] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const [failMessage, setFailMessage] = useState('');
+  const [cookies] = useCookies();
 
   axios.defaults.withCredentials = true;
 
@@ -31,6 +33,8 @@ const SaldoRequest = () => {
           type: requestType,
           amount: parseFloat(amount),
           currency: currency
+        }, {
+          headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
         }).then(response => {
           setSuccessMessage(response.data.message);
           setFailMessage('');

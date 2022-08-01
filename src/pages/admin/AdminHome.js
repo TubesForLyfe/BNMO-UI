@@ -6,7 +6,7 @@ const AdminHome = () => {
   const [cookies, setCookies, removeCookies] = useCookies();
 
   const logout = () => {
-    setCookies('bnmo_token', cookies.bnmo_token, { path: '/' });
+    setCookies('bnmo_token', cookies.bnmo_token);
     removeCookies('bnmo_token');
   }
 

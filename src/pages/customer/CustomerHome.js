@@ -10,14 +10,17 @@ const CustomerHome = () => {
   axios.defaults.withCredentials = true;
   
   const logout = () => {
-    setCookies('bnmo_token', cookies.bnmo_token, { path: '/' });
+    setCookies('bnmo_token', cookies.bnmo_token);
     removeCookies('bnmo_token');
   }
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/profile`).then(response => {
+    axios.get(`${process.env.REACT_APP_BNMO_API}/customer/profile`, {
+      headers: { 'Authorization': 'Bearer ' + cookies.bnmo_token}
+    }).then(response => {
       setProfile(response.data);
     })
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -25,7 +28,7 @@ const CustomerHome = () => {
       <div className='row justify-content-center'>
         <div className='col-md-4 col-md-offset-4 border border-secondary mt-3 mb-3'>
             <br></br>
-            {profile.image && <img className='h-25 w-25 border border-info' alt={`${profile.nama}`} src={`${process.env.REACT_APP_BNMO_API}/image/${profile.image}`} />}
+            {profile.image && <img className='h-25 w-25 border border-info' alt={`${profile.nama}`} src={`${process.env.REACT_APP_BNMO_API}/image/${profile.image}/${cookies.bnmo_token}`} />}
             <h5>{profile.nama}</h5>
             <h5>Rp {profile.saldo}</h5>
             <hr></hr>
