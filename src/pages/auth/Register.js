@@ -61,8 +61,8 @@ const Register = () => {
                 <input type='password' className='form-control' name='password' onChange={e => setPassword(e.target.value)} />
             </div>
             <div className='form-group'>
-                <label for='foto-image' className='left'>Foto image</label>
-                <input type='file' accept='image/*' className='form-control' name='foto-image' onChange={e => setImage(e.target.files[0])} />
+                <label for='foto-ktp' className='left'>Foto KTP</label>
+                <input type='file' accept='image/*' className='form-control' name='foto-ktp' onChange={e => setImage(e.target.files[0])} />
             </div>
             <br></br>
             {failMessage !== '' && <p className='text-danger'>{failMessage}</p>}
