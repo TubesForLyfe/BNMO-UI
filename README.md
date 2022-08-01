@@ -10,8 +10,6 @@
 
 `> npm start`
 
-- Jika menggunakan Docker, jalankan perintah berikut pada terminal.
-
 ## Tech Stack yang digunakan
 
 Tech Stack yang digunakan adalah <strong>React.js</strong> dengan versi node 16.14.2 dan npm 8.5.0.
