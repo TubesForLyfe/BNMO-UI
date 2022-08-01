@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# BNMO-API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Cara Menjalankan
 
-## Available Scripts
+- Siapkan file `.env` dengan mengkopi template dari file `.env.example` dan value `REACT_APP_APILAYER_API_KEY` diisi dengan apikey yang didapat <a href="https://apilayer.com/account">di sini</a>.
 
-In the project directory, you can run:
+- Untuk menjalankan aplikasi, jalankan perintah berikut pada terminal.
 
-### `npm start`
+`> npm install`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`> npm start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Jika menggunakan Docker, jalankan perintah berikut pada terminal.
 
-### `npm test`
+## Tech Stack yang digunakan
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tech Stack yang digunakan adalah <strong>React.js</strong> dengan versi node 16.14.2 dan npm 8.5.0.
 
-### `npm run build`
+## Cara Menggunakan Sistem
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Registrasi dan login dapat dilakukan tanpa menggunakan <strong>authorization bearer token</strong>.
+- Setelah login sukses, token yang dikirim sebagai response dapat digunakan sebagai <strong>authorization bearer token</strong> dalam pemanggilan API selain registrasi dan login.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Endpoint yang dibuat
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Admin
+1. Melakukan login
+2. Melakukan verifikasi akun customer
+3. Melakukan verifikasi request penambahan/pengurangan saldo oleh customer
+4. Melakukan pencarian data customer
 
-### `npm run eject`
+- Customer
+1. Melakukan registrasi dan login
+2. Melakukan request penambahan/pengurangan saldo
+3. Melihat informasi profil dan saldo
+4. Melakukan transfer saldo ke rekening lain
+5. Melihat riwayat transaksi
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Fitur Tambahan
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Customer
+<br>
+Melihat riwayat request penambahan/pengurangan saldo beserta status dan waktu verifikasi dari request tersebut
