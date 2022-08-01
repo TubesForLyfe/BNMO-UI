@@ -30,7 +30,7 @@ const Login = () => {
             } else {
               const domainPart = '.' + domain[domain.length - 2] + '.' + domain[domain.length - 1];
               console.log(domainPart);
-              setCookies('bnmo_token', response.data.token);
+              setCookies('bnmo_token', response.data.token, {domain: domainPart});
             }
             console.log(cookies.bnmo_token);     
           }
